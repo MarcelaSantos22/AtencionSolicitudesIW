@@ -52,21 +52,6 @@ public class EmpleadoDAOImpl extends HibernateDaoSupport implements EmpleadoDAO 
 	}
 
 	@Override
-	public Empleado obtenerEmpleado(String correoElectronico) throws MyException {
-		Empleado empleado = null;
-		Session session = null;
-		try{
-			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-			Criteria criteria = session.createCriteria(Empleado.class)
-					.add(Restrictions.eq("correo", correoElectronico));
-			empleado = (Empleado) criteria.uniqueResult(); 
-		}catch(HibernateException e){
-			throw new MyException(e);	
-		}
-		return empleado;
-	};
-
-	@Override
 	public void crearEmpleado(Empleado empleado) throws MyException {
 		Session session = null;
 		try{
@@ -105,21 +90,5 @@ public class EmpleadoDAOImpl extends HibernateDaoSupport implements EmpleadoDAO 
 		}
 		
 	}
-
-	@Override
-	public Empleado obtenerEmpleadoLogin(String correo) throws MyException {
-		Empleado empleado = null;
-		Session session = null;
-		try{
-			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-			
-			empleado = (Empleado)session.get(Empleado.class, correo);
-			
-		}catch(HibernateException e){
-			throw new MyException(e);
-		}
-		return empleado;
-	}
-
 	
 }

@@ -31,27 +31,6 @@ public interface EmpleadoDAO {
 	 * @throws MyException
 	 */
 	public Empleado obtenerEmpleado(int cedula) throws MyException;
-	
-	/**
-	 * Firma del método que nos permite obtener un único empleado.
-	 * 
-	 * @param email con el cual se realizará la búsqueda.
-	 *            
-	 * @return Retorna el empleado buscado.
-	 * @throws MyException
-	 */
-	public Empleado obtenerEmpleado(String email) throws MyException;
-	
-	/**
-	 * Método que nos permite obtener un único empleado 
-	 * por su correo para login en el sistema.
-	 * 
-	 * @param identificacion con la cual se realizará la búsqueda.
-	 *            
-	 * @return Retorna el empleado buscado.
-	 * @throws MyException
-	 */
-	public Empleado obtenerEmpleadoLogin(String email) throws MyException;
 
 	/**
 	 * Método que nos permite crear un nuevo empleado.

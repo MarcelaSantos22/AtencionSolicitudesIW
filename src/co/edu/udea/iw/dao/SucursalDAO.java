@@ -15,8 +15,6 @@ import co.edu.udea.iw.exception.MyException;
 /**
  * DAO Interfaz que define los metodos que va a 
  * proveer  la clase Sucursal.
- * 
- * 
  * @version 1.0
  */
 public interface SucursalDAO {

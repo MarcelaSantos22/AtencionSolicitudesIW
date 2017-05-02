@@ -6,6 +6,8 @@ import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.exception.MyException;
 /**
  * Interface de Usuario 
+ * @author Yuri Quejada
+ * @author Daniel Pelaez
  * @author Jean Herrera
  */
 public interface UsuarioDAO {
@@ -27,7 +29,7 @@ public interface UsuarioDAO {
 	
 	
 	/**
-	 * actualiza los datos de un usuario en la bd
+	 * Actualiza los datos de un usuario en la bd
 	 * @param usuario
 	 * @throws MyException
 	 */

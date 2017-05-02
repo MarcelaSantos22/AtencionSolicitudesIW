@@ -50,12 +50,11 @@ public interface SolicitudDAO {
 	public void modificarSolicitud(Solicitud solicitud) throws MyException;
 	
 	/**
-	 * Método para guardar tiempos de respuesta de las solicitudes
-	 * @param 
+	 * Método para filtrar las solicitudes entre quejas, reclamos, sugerencias o preguntas
+	 * @param tipo de solicitud
+	 * @throws MyException
 	 * 
 	 */
-	
-	
 	public List<Solicitud> filtrarSolicitudes(TipoSolicitud tipoSolicitud) throws MyException;
 	
 }

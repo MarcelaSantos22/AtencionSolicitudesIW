@@ -13,7 +13,7 @@ import co.edu.udea.iw.exception.MyException;
 
 public interface RespuestaEncuestaDAO {
 	/**
-	 * Firma del método que nos permite obtener todos las respuestas.
+	 * Método que nos permite obtener todos las respuestas.
 	 * 
 	 * @return Lista con las respuestas.
 	 * @throws MyException

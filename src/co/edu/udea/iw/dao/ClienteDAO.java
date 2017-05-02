@@ -28,14 +28,6 @@ public interface ClienteDAO {
 	 * @throws MyException
 	 */
 	public Cliente obtenerCliente(int cedula) throws MyException;
-
-	/**
-	 * Método para obtener un único cliente por medio del correo
-	 * @param correo
-	 * @return
-	 * @throws MyException
-	 */
-	public Cliente obtenerCliente(String email) throws MyException;
 	
 	/**
 	 * Método que nos permite crear un nuevo cliente.
