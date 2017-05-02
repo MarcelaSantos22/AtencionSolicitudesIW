@@ -11,7 +11,7 @@ package dto;
  */
 
 public class Usuario {
-	private String user;
+	private String user; //PK
 	private String password;
 	private Rol rol;
 

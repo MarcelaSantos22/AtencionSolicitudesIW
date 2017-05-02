@@ -12,7 +12,7 @@ package dto;
 
 
 public class Cliente {
-	private String cedula;
+	private String cedula; //PK
 	private String nombre;
 	private String apellido;
 	private String email;

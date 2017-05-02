@@ -8,7 +8,7 @@
             <column name="CEDULA" />
             <generator class="assigned" />
         </id>
-        <property name="cedula" type="java.lang.String">
+        <property name="apellido" type="java.lang.String">
             <column name="APELLIDO" />
         </property>
         <property name="nombre" type="java.lang.String">

@@ -10,7 +10,7 @@ package dto;
  * @version 1.0
  */
 
-public class RespuestaSolicitud {
+public class RespuestaEncuesta {
 	private int id;
 	private int satisfaccion;
 	private Cliente cliente;

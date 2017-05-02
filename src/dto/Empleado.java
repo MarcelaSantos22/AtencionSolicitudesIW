@@ -12,7 +12,7 @@ package dto;
 
 
 public class Empleado {
-	private String cedula;
+	private String cedula; //PK
 	private String nombre;
 	private String apellido;
 	private String email;
