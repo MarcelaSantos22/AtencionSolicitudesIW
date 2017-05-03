@@ -7,6 +7,17 @@ import co.edu.udea.iw.dto.Solicitud;
 import co.edu.udea.iw.dto.TipoSolicitud;
 import co.edu.udea.iw.exception.MyException;
 
+/**
+ * DAO
+ * Interfaz que define los metodos que va a proveer
+ * la clase Solicitud.
+ * 
+ * @author Yuri Quejada
+ * @author Daniel Pelaez
+ * @author Jean Herrera
+ * @version 1.0
+ */
+
 public interface SolicitudDAO {
 	/**
 	 * Método que nos permite obtener todos las solicitudes.
@@ -14,17 +25,16 @@ public interface SolicitudDAO {
 	 * @return Lista con las solicitudes.
 	 * @throws MyException
 	 */
-	public List<Solicitud> listarSolicitudes() throws MyException;
+	public List<Solicitud> obtenerSolicitudes() throws MyException;
 	
 	/**
 	 * Método que nos permite obtener una unica solicitud.
 	 * 
-	 * @param idcodigo
-	 *            con la cual se realizará la búsqueda.
+	 * @param id con la cual se realizará la búsqueda.
 	 * @return Retorna la solicitud buscada.
 	 * @throws MyException
 	 */
-	public Solicitud obtenerSolicitud(int idcodigo) throws MyException;
+	public Solicitud obtenerSolicitud(int id) throws MyException;
 
 	/**
 	 * Método que nos permite crear una nueva solicitud.
@@ -33,7 +43,7 @@ public interface SolicitudDAO {
 	 *            que se va a crear en el sistema y almacenar en la BD.
 	 * @throws MyException
 	 */
-	public void crearSolicitud(Solicitud solicitud) throws MyException;
+	public void guardar(Solicitud solicitud) throws MyException;
 
 	/**
 	 * Método que nos permite eliminar una solicitud de la base de datos. 
@@ -43,11 +53,11 @@ public interface SolicitudDAO {
 	public void eliminarSolicitud(Solicitud solicitud) throws MyException;
 
 	/**
-	 * Método para modificar una solicitud existente.
-	 * @param solicitud que se desea modificar.
+	 * Método para actualizar una solicitud existente.
+	 * @param solicitud que se desea actualizar
 	 * @throws MyException
 	 */
-	public void modificarSolicitud(Solicitud solicitud) throws MyException;
+	public void actualizar(Solicitud solicitud) throws MyException;
 	
 	/**
 	 * Método para filtrar las solicitudes entre quejas, reclamos, sugerencias o preguntas

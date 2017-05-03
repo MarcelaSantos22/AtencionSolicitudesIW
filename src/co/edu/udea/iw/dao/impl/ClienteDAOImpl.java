@@ -10,14 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
-import co.edu.udea.iw.dao.EmpleadoDAO;
+import co.edu.udea.iw.dao.ClienteDAO;
 import co.edu.udea.iw.dto.Cliente;
-import co.edu.udea.iw.dto.Empleado;
 import exception.MyException;
 
 /**
  * Implementación de los metodos
- *  de la interfaz EmpleadoDAO.
+ *  de la interfaz ClienteDao.
  * 
  * @author Yuri Quejada
  * @author Daniel Pelaez
@@ -25,7 +24,7 @@ import exception.MyException;
  * @version 1.0
  */
 
-public class EmpleadoDAOImpl implements EmpleadoDAO{
+public class ClienteDAOImpl implements ClienteDAO {
 	
 	private SessionFactory sessionFactory;
 	private Session session;
@@ -38,81 +37,83 @@ public class EmpleadoDAOImpl implements EmpleadoDAO{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
-	public void guardar(Empleado empleado) throws MyException {
+	public void guardar(Cliente cliente) throws MyException {
 		session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			session.save(empleado);
+			session.save(cliente);
 
 		} catch (HibernateException e) {
 
-			throw new MyException("Ocurrio un error guardando el empleado", e);
-		}		
+			throw new MyException("Ocurrio un error guardando el cliente", e);
+		}
+		
 	}
 
 	@Override
-	public void modificar(Empleado empleado) throws MyException {
+	public void modificar(Cliente cliente) throws MyException {
 		session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			session.update(empleado);
+			session.update(cliente);
 
 		} catch (HibernateException e) {
 
-			throw new MyException("Ocurrio un error actualizando el empleado", e);
-		}		
+			throw new MyException("Ocurrio un error actualizando el cliente", e);
+		}
+		
 	}
 
 	@Override
-	public void eliminar(Empleado empleado) throws MyException {
+	public void eliminar(Cliente cliente) throws MyException {
 		session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			session.delete(empleado);
+			session.delete(cliente);
 
 		} catch (HibernateException e) {
 
-			throw new MyException("Ocurrio un error eliminando el empleado", e);
+			throw new MyException("Ocurrio un error eliminando el cliente", e);
 		}		
 	}
 
 	@Override
-	public List<Empleado> obtener() throws MyException {
+	public List<Cliente> obtener() throws MyException {
 		session = null;
-		List<Empleado> empleados = new ArrayList<Empleado>();
+		List<Cliente> clientes = new ArrayList<Cliente>();
 		Criteria criteria = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			criteria = session.createCriteria(Empleado.class);
+			criteria = session.createCriteria(Cliente.class);
 			criteria.addOrder(Order.asc("nombre"));
 
-			empleados = criteria.list();
+			clientes = criteria.list();
 		} catch (HibernateException e) {
-			throw new MyException("Ocurrio un error consultando los empleados", e);
+			throw new MyException("Ocurrio un error consultando los clientes", e);
 		}
 
-		return empleados;
+		return clientes;
 	}
 
 	@Override
-	public Empleado obtener(String cedula) throws MyException {
-		Empleado empleado = new Empleado();
+	public Cliente obtener(String cedula) throws MyException {
+		Cliente cliente = new Cliente();
 		session = null;
 		try {
 			session = sessionFactory.getCurrentSession();
-			empleado = (Empleado) session.get(Empleado.class, cedula);
+			cliente = (Cliente) session.get(Cliente.class, cedula);
 
 		} catch (HibernateException e) {
-			throw new MyException("Ocurrio un error consultando los empleados", e);
+			throw new MyException("Ocurrio un error consultando los clientes", e);
 		}
 
-		return empleado;
+		return cliente;
 	}
 
 }

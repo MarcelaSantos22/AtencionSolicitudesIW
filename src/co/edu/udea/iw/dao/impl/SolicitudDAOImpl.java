@@ -31,9 +31,8 @@ import co.edu.udea.iw.exception.MyException;
 public class SolicitudDAOImpl extends HibernateDaoSupport implements SolicitudDAO
 {
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Solicitud> listarSolicitudes() throws MyException {
+	public List<Solicitud> obtenerSolicitudes() throws MyException {
 	List<Solicitud> solicitudes = new ArrayList<Solicitud>();
 		
 		try{
@@ -68,7 +67,7 @@ public class SolicitudDAOImpl extends HibernateDaoSupport implements SolicitudDA
 
 
 	@Override
-	public void crearSolicitud(Solicitud solicitud) throws MyException {
+	public void guardar(Solicitud solicitud) throws MyException {
 		Session session = null;
 		try{
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -94,7 +93,7 @@ public class SolicitudDAOImpl extends HibernateDaoSupport implements SolicitudDA
 	}
 
 	@Override
-	public void modificarSolicitud(Solicitud solicitud) throws MyException {
+	public void actualizar(Solicitud solicitud) throws MyException {
 		Session session = null;
 		try{
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -106,7 +105,6 @@ public class SolicitudDAOImpl extends HibernateDaoSupport implements SolicitudDA
 		}
 		
 	}
-	
 	
 	@Override
 	public List<Solicitud> filtrarSolicitudes(TipoSolicitud tipoSolicitud) throws MyException {
