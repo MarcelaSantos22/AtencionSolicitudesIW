@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.dao.SolicitudDAO;
+import co.edu.udea.iw.dao.SucursalDAO;
 import co.edu.udea.iw.dao.TipoSolicitudDAO;
 import co.edu.udea.iw.dao.UsuarioDAO;
 import co.edu.udea.iw.dao.ClienteDAO;
@@ -16,7 +16,6 @@ import co.edu.udea.iw.dto.Empleado;
 import co.edu.udea.iw.dto.Solicitud;
 import co.edu.udea.iw.dto.Sucursal;
 import co.edu.udea.iw.dto.TipoSolicitud;
-import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.exception.MyException;
 import co.edu.udea.iw.exception.IWServiceException;
 import co.edu.udea.iw.validation.Validaciones;
@@ -39,6 +38,7 @@ public class SolicitudBL {
 	private TipoSolicitudDAO tipoSolicitudDAO;
 	private ClienteDAO clienteDAO;
 	private EmpleadoDAO empleadoDAO;
+	private SucursalDAO sucursalDAO;
 
 	/**
 	 * Metodo para guardar la solicitud realizada por el Cliente. Los campos
@@ -51,7 +51,7 @@ public class SolicitudBL {
 	private Sucursal sucursal;
 	private Empleado responsable;
 	 * 
-	 * Los campos fechaRespuesta y respuestaSolicitud, se dejan vacíos hasta que se
+	 * Los campos fechaRespuesta y respuestaSolicitud, se dejan vacÃ­os hasta que se
 	 * responda la solicitud
 	 * 
 	 * @param descripcion
@@ -67,52 +67,53 @@ public class SolicitudBL {
 	 * @param fechaSolicitud
 	 *            fecha en que el cliente hizo la solitud.
 	 * @throws MyException
-	 *             cuando ocurre cualquier error en la comunicación con la BD.
+	 *             cuando ocurre cualquier error en la comunicaciï¿½n con la BD.
 	 * @throws IWServiceException
 	 *             cuando ocurre cualquier error en la logica de negocio.
 	 */
 	public Solicitud guardarSolicitud(String descripcion, String complejidad ,int tiposolicitud,
 			Date fechaSolicitud, Date fechaRespuesta, String respuestaSolicitud,
-			String clienteS, int sucursal, String responsable)
-			throws MyException, IWServiceException, exception.MyException {
+			String clienteS, int IDsucursal, String responsable)
+			throws MyException,  exception.MyException {
 
-		Cliente cliente = null;
-		Empleado empleado = null;
+		Cliente cliente;
 		TipoSolicitud tipoSolicitud = null;
 		Solicitud solicitud;
-		cliente = clienteDAO.obtener(cliente.getCedula());
+		Sucursal sucursal;
+		sucursal = sucursalDAO.obtenerSucursal(IDsucursal);
+		cliente = clienteDAO.obtener(clienteS);
 		if (cliente.getUsuario() == null) {
-			throw new IWServiceException("El usuario no existe en el sistema");
+			throw new MyException("El usuario no existe en el sistema");
 		}
 		if (!cliente.getUsuario().getRol().getDescripcion().equals("cliente")) {
-			throw new IWServiceException(
+			throw new MyException(
 					"No tiene permisos para realizar solicitudes");
 		}
 
 		tipoSolicitud = tipoSolicitudDAO.obtenerTipoSolicitud(tiposolicitud);
 		if (tipoSolicitud == null) {
-			throw new IWServiceException(
+			throw new MyException(
 					"El tipo de solicitud no es valida en el sistema");
 		}
 		if (Validaciones.isTextoVacio(descripcion)) {
-			throw new IWServiceException(
+			throw new MyException(
 					"El campo descripcion no puede ser nulo, ni una cadena de caracteres vacia");
 		}
 
 		if (Validaciones.isTextoVacio(complejidad)) {
-			throw new IWServiceException(
+			throw new MyException(
 					"El campo complejidad no puede ser nulo, ni una cadena de caracteres vacia");
 		}
 
-		if (Validaciones.isTextoVacio(Integer.toString(sucursal))) {
-			throw new IWServiceException("Debe seleccionar una sucursal");
+		if (Validaciones.isTextoVacio(Integer.toString(IDsucursal))) {
+			throw new MyException("Debe seleccionar una sucursal");
 		}
 
 		solicitud = new Solicitud();
 		solicitud.setDescripcion(descripcion);
 		solicitud.setComplejidad(complejidad);
 		solicitud.setCliente(cliente);
-		//solicitud.setSucursal(sucursal);
+		solicitud.setSucursal(sucursal);
 		solicitud.setTipoSolicitud(tipoSolicitud);
 		solicitud.setFechaSolicitud(fechaSolicitud);
 
@@ -132,33 +133,33 @@ public class SolicitudBL {
 	 *            usuario del encargado de responder la solicitud.
 	 * @throws MyException
 	 *             Manejar las excepciones del DAO.
-	 * @throws IWServiceException
-	 *             Manejar las excepciones de la lógica del negocio.
+	 * @throws MyException
+	 *             Manejar las excepciones de la lÃ³gica del negocio.
 	 * @throws exception.MyException 
 	 */
 	public Solicitud asignarResponsable(int idSolicitud,
 			String usuarioResponsable, String usuarioGerente)
-			throws MyException, IWServiceException, exception.MyException {
+			throws MyException, exception.MyException {
 
 		if (Validaciones.isTextoVacio(Integer.toString(idSolicitud))) {
-			throw new IWServiceException(
+			throw new MyException(
 					" El campo idSolicitud no debe ser nulo, ni una cadena de caracteres vacia");
 		}
 		if (Validaciones.isTextoVacio(usuarioResponsable)) {
-			throw new IWServiceException(
+			throw new MyException(
 					" El campo usuarioResponsable no debe ser nulo, ni una cadena de caracteres vacia");
 		}
 		if (Validaciones.isTextoVacio(usuarioGerente)) {
-			throw new IWServiceException(
+			throw new MyException(
 					" El campo usuarioGerente no debe ser nulo, ni una cadena de caracteres vacia");
 		}
 		Empleado usrGerente = empleadoDAO.obtener(usuarioGerente);
 		if (usrGerente == null) {
-			throw new IWServiceException(
+			throw new MyException(
 					"No tiene permisos para realizar esta accion");
 		}
 		if (!usrGerente.getUsuario().getRol().getDescripcion().equals("gerente")) {
-			throw new IWServiceException(
+			throw new MyException(
 					"No tiene permisos para realizar esta accion");
 		}
 
@@ -169,16 +170,16 @@ public class SolicitudBL {
 		solicitud = solicitudDAO.obtenerSolicitud(idSolicitud);
 
 		if (usrResponsable == null) {
-			throw new IWServiceException(
+			throw new MyException(
 					"El usuario al que le desea asignar la solicitud no se encuentra en el sistema");
 		}
 		if (usrResponsable.getUsuario().getRol().getDescripcion().equals("cliente")) {
-			throw new IWServiceException(
+			throw new MyException(
 					"No le puede asignar esta responsabilidad a un cliente");
 		}
 
 		if (solicitud == null) {
-			throw new IWServiceException("No se encuentra la solicitud");
+			throw new MyException("No se encuentra la solicitud");
 		}
 		solicitud.setResponsable(usrResponsable);
 		solicitudDAO.actualizar(solicitud);
@@ -200,36 +201,36 @@ public class SolicitudBL {
 	 *            fecha en que se respondio la solicitud
 	 * @throws ExceptionDao
 	 *             Manejar las excepciones del DAO.
-	 * @throws IWServiceException
+	 * @throws MyException
 	 *             Manejar las excepciones de la lÃ³gica del negocio.
 	 * @throws exception.MyException 
 	 */
 	public void responderSolicitud(int idSolicitud, String respuestaSolicitud,
 			Date fechaRespuesta, String usuarioResponsable)
-			throws MyException, IWServiceException, exception.MyException {
+			throws MyException, exception.MyException {
 
 		if (Validaciones.isTextoVacio(usuarioResponsable)) {
-			throw new IWServiceException(
+			throw new MyException(
 					" El campo usuarioResponsable no debe ser nulo, ni una cadena de caracteres vacia");
 		}
 		if (Validaciones.isTextoVacio(respuestaSolicitud)) {
-			throw new IWServiceException(
+			throw new MyException(
 					" El campo respuesta no debe ser nulo, ni una cadena de caracteres vacia");
 		}
 
 		Empleado usrResponsable = empleadoDAO.obtener(usuarioResponsable);
 		if (usrResponsable == null) {
-			throw new IWServiceException("No existe el usuario");
+			throw new MyException("No existe el usuario");
 		}
 		if (usrResponsable.getUsuario().getRol().getDescripcion().equals("cliente")) {
-			throw new IWServiceException(
+			throw new MyException(
 					"No tiene permisos para responder una solicitud");
 		}
 
 		Solicitud solicitud = solicitudDAO.obtenerSolicitud(idSolicitud);
 
 		if (solicitud == null) {
-			throw new IWServiceException("No se encuentra la solicitud");
+			throw new MyException("No se encuentra la solicitud");
 		}
 
 		solicitud.setRespuestaSolicitud(respuestaSolicitud);
@@ -246,19 +247,19 @@ public class SolicitudBL {
 	 * @return Lista de solicitudes
 	 * @throws ExceptionDao
 	 *             Manejar las excepciones del DAO.
-	 * @throws IWServiceException
-	 *             Manejar las excepciones de la lógica del negocio.
+	 * @throws MyException
+	 *             Manejar las excepciones de la lï¿½gica del negocio.
 	 * @throws exception.MyException 
 	 */
 	public List<Solicitud> obtenerSolicitudes(String cedula) throws MyException,
-			IWServiceException, exception.MyException {
+		 exception.MyException {
 		Empleado empleado = empleadoDAO.obtener(cedula);
 		if (empleado == null) {
-			throw new IWServiceException(
+			throw new MyException(
 					"No existe usuario");
 		}
 		if (!empleado.getUsuario().getRol().getDescripcion().equals("gerente")) {
-			throw new IWServiceException(
+			throw new MyException(
 					"No tiene permisos para realizar esta acciï¿½n");
 		}
 		return solicitudDAO.obtenerSolicitudes();
@@ -272,15 +273,15 @@ public class SolicitudBL {
 	 * @return Solicitud
 	 * @throws ExceptionDao
 	 *             Manejar las excepciones del DAO.
-	 * @throws IWServiceException
+	 * @throws MyException
 	 *             Manejar las excepciones de la lÃ³gica del negocio.
 	 */
-	public Solicitud obtenerSolicitud(int id) throws MyException,
-			IWServiceException {
+	public Solicitud obtenerSolicitud(int id) throws MyException
+		{
 		Solicitud solicitud;
 		solicitud = solicitudDAO.obtenerSolicitud(id);
 		if (solicitud == null) {
-			throw new IWServiceException("No se encuentra la solicitud");
+			throw new MyException("No se encuentra la solicitud");
 		}
 		return solicitud;
 	}
@@ -291,8 +292,7 @@ public class SolicitudBL {
 	 * @return lista de las solicitudes atrasadas.
 	 */
 
-	public List<Solicitud> seguimientoSolicitudes() throws MyException,
-			IWServiceException {
+	public List<Solicitud> seguimientoSolicitudes() throws MyException {
 		List<Solicitud> solicitudesAtrasadas = new ArrayList<Solicitud>();
 		List<Solicitud> solicitudes;
 		Date fechaActual = new Date();
@@ -336,16 +336,16 @@ public class SolicitudBL {
 	 * 
 	 * @param idSolicitud
 	 * @return Lista de solicitudes filtradas por tipo
-	 * @throws IWServiceException
+	 * @throws MyException
 	 * @throws ExceptionDao
 	 */
 	public List<Solicitud> filtrarPorTipo(Integer idTipoSolicitud)
-			throws IWServiceException, MyException {
+			throws  MyException {
 		List<Solicitud> solicitudes;
 		TipoSolicitud tipoS = tipoSolicitudDAO
 				.obtenerTipoSolicitud(idTipoSolicitud);
 		if (tipoS == null) {
-			throw new IWServiceException("No existe el tipo de solicitud");
+			throw new MyException("No existe el tipo de solicitud");
 		}
 		solicitudes = solicitudDAO.filtrarSolicitudes(tipoS);
 		return solicitudes;

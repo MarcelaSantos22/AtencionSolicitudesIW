@@ -3,12 +3,12 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 26/04/2017 09:01:16 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="dto.Cliente" table="CLIENTE">
+    <class name="co.edu.udea.dto.Cliente" table="CLIENTE">
         <id name="cedula" type="java.lang.String">
             <column name="CEDULA" />
             <generator class="assigned" />
         </id>
-        <property name="cedula" type="java.lang.String">
+        <property name="apellido" type="java.lang.String">
             <column name="APELLIDO" />
         </property>
         <property name="nombre" type="java.lang.String">
@@ -23,7 +23,7 @@
         <property name="direccion" type="java.lang.String">
             <column name="DIRECCION" />
         </property>
-        <many-to-one name="usuario" class="dto.Usuario" fetch="join">
+        <many-to-one name="usuario" class="co.edu.udea.dto.Usuario" fetch="join">
             <column name="USUARIO" />
         </many-to-one>
     </class>

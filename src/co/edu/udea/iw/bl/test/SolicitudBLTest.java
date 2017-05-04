@@ -16,7 +16,7 @@ import co.edu.udea.iw.bl.SolicitudBL;
 
 import co.edu.udea.iw.dto.Solicitud;
 import co.edu.udea.iw.exception.MyException;
-import co.edu.udea.iw.exception.IWServiceException;
+
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,14 +28,14 @@ public class SolicitudBLTest {
 	SolicitudBL solicitudBL;
 
 	@Test
-	public void guardarSolicitud() {
+	public void guardarSolicitud() throws exception.MyException {
 		
 		try {
 			Solicitud solicitud=solicitudBL.guardarSolicitud("descr", "Alta" , 2, new Date(), new Date(),
 					"","123" , 1, "456");
-			System.out.println("Se guardó correctamente la solicitud con la siguiente información:");
+			System.out.println("Se guardï¿½ correctamente la solicitud con la siguiente informaciï¿½n:");
 			System.out.println("ID de Solicitud: "+solicitud.getId());
-			System.out.println("Descripción: "+solicitud.getDescripcion());
+			System.out.println("Descripciï¿½n: "+solicitud.getDescripcion());
 			System.out.println("Complejidad: "+solicitud.getComplejidad());
 			System.out.println("Tipo de Solicitud: "+solicitud.getTipoSolicitud());
 			System.out.println("Fecha de Solicitud: "+solicitud.getFechaSolicitud());
@@ -52,15 +52,15 @@ public class SolicitudBLTest {
 	}
 	
 //	@Test
-	public void mostrarSolicitudes(){
+	public void mostrarSolicitudes() throws exception.MyException{
 		try {
-			List<Solicitud> solicitudes=(List<Solicitud>) solicitudBL.obtenerSolicitud(1);
+			List<Solicitud> solicitudes=solicitudBL.obtenerSolicitudes("123");
 			if(solicitudes.isEmpty()){
 				System.out.println("No hay nada para mostrar");
 			}
 			for(Solicitud solicitud:solicitudes){
 				System.out.println("ID solicitud: "+solicitud.getId());
-				System.out.println("Desripción: "+solicitud.getDescripcion());
+				System.out.println("Desripciï¿½n: "+solicitud.getDescripcion());
 				System.out.println("Cliente: "+solicitud.getCliente().getNombre());
 				System.out.println();
 			}
@@ -71,7 +71,7 @@ public class SolicitudBLTest {
 	}
 	
 //	@Test
-	public void responderSolicitud(){
+	public void responderSolicitud() throws exception.MyException{
 		
 		try {
 			solicitudBL.responderSolicitud(1, "No podemos responder esta solicitud", new Date(),"diana");
@@ -82,11 +82,11 @@ public class SolicitudBLTest {
 		}
 	}
 //	@Test
-	public void asignarResponsable(){
+	public void asignarResponsable() throws exception.MyException{
 		
 		try {
 			Solicitud solicitid=solicitudBL.asignarResponsable(1, "diana","bojaca");
-			System.out.println("Se asignó correctamente el responsable...");
+			System.out.println("Se asignï¿½ correctamente el responsable...");
 			System.out.println("ID de Solicitud: "+solicitid.getId());
 			System.out.println("Descripcion: "+solicitid.getDescripcion());
 			System.out.println("Responsable: "+solicitid.getResponsable().getNombre()+" "+
@@ -124,10 +124,7 @@ public class SolicitudBLTest {
 				System.out.println();
 				
 			}
-		} catch (IWServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			fail(e.getMessage());
+		
 		} catch (MyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

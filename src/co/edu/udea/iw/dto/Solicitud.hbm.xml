@@ -23,16 +23,16 @@
         <property name="respuestaSolicitud" type="java.lang.String">
             <column name="RESPUESTASOLICITUD" />
         </property>
-        <many-to-one name="cliente" class="dto.Cliente" fetch="join">
+        <many-to-one name="cliente" class="co.edu.udea.dto.Cliente" fetch="join">
             <column name="CLIENTE" />
         </many-to-one>
-        <many-to-one name="sucursal" class="dto.Sucursal" fetch="join">
+        <many-to-one name="sucursal" class="co.edu.udea.dto.Sucursal" fetch="join">
             <column name="SUCURSAL" />
         </many-to-one>
-        <many-to-one name="tipoSolicitud" class="dto.TipoSolicitud" fetch="join">
+        <many-to-one name="tipoSolicitud" class="co.edu.udea.dto.TipoSolicitud" fetch="join">
             <column name="TIPOSOLICITUD" />
         </many-to-one>
-        <many-to-one name="responsable" class="dto.Empleado" fetch="join">
+        <many-to-one name="responsable" class="co.edu.udea.dto.Empleado" fetch="join">
             <column name="RESPONSABLE" />
         </many-to-one>
     </class>
