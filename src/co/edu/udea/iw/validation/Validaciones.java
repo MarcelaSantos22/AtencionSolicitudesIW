@@ -5,7 +5,9 @@ import java.util.regex.Pattern;
 
 /**
  * Clase para validaciones en general del sistema
- * @author Elver Suarez Alzate
+ * @author Yuri Quejada
+ * @author Daniel Pelaez
+ * @author Jean Herrera
  */
 public class Validaciones {
 
