@@ -45,9 +45,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="clienteDAO" class="implDAO.ClienteDAOimpl">
-		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="empleadoDAO" class="implDAO.EmpleadoDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -55,9 +55,43 @@
 	<bean id="usuarioDAO" class="implDAO.UsuarioDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="respuestaDAO" class="implDAO.RespuestaEncuestaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="rolDAO" class="implDAO.RolDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="solicitudDAO" class="implDAO.SolicitudDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="tipoSolicitudDAO" class="implDAO.TipoSolicitudDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="sucursalDAO" class="implDAO.SucursalDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="clienteBL" class="bl.ClienteBL">
+		<property name="clienteDAO" ref="clienteDAO"></property>
+		<property name="usuarioDAO" ref="usuarioDAO"></property>
+	</bean>
+	<bean id="empleadoBL" class="bl.EmpleadoBL">
+		<property name="empleadoDAO" ref="empleadoDAO"></property>
+		<property name="usuarioDAO" ref="usuarioDAO"></property>
+	</bean>
+	<bean id="usuarioBL" class="bl.UsuarioBL">
+		<property name="usuarioDAO" ref="usuarioDAO"></property>
+		<property name="rolDAO" ref="rolDAO"></property>
+	</bean>
+	<bean id="solicitudBL" class="bl.SolicitudBL">
+		<property name="usuarioDAO" ref="usuarioDAO"/>
+			<property name="clienteDAO" ref="clienteDAO"/>
+			<property name="empleadoDAO" ref="empleadoDAO"/>
+			<property name="sucursalDAO" ref="sucursalDAO"/>
+			<property name="tipoSolicitudDAO" ref="tipoSolicitudDAO"/>
+			<property name="solicitudDAO" ref="solicitudDAO"/>
+	</bean>
 
-<!-- 
-	<context:component-scan base-package="co.edu.udea.iw.ws" /> -->
+	<!-- <context:component-scan base-package="co.edu.udea.iw.ws" /> -->
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 

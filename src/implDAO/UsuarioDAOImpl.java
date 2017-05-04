@@ -1,11 +1,17 @@
 package implDAO;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 
 import dao.UsuarioDAO;
+import dto.Empleado;
 import dto.Usuario;
 import exception.MyException;
 
@@ -22,6 +28,7 @@ import exception.MyException;
 public class UsuarioDAOImpl implements UsuarioDAO{
 	
 	private SessionFactory sessionFactory;
+	private Session session;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -33,7 +40,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	
 	@Override
 	public Usuario obtener(String user) throws MyException {
-		Session session = null;
+		session = null;
 		Usuario usuario = new Usuario();
 
 		try {
@@ -45,6 +52,54 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 		} 
 		return usuario;
+	}
+
+	@Override
+	public void guardar(Usuario usuario) throws MyException {
+		session = null;
+
+		try {
+			session = sessionFactory.getCurrentSession();
+			session.save(usuario);
+
+		} catch (HibernateException e) {
+
+			throw new MyException("Ocurrio un error guardando el usuario", e);
+		}		
+	}
+
+	@Override
+	public void eliminar(Usuario usuario) throws MyException {
+		session = null;
+
+		try {
+			session = sessionFactory.getCurrentSession();
+			session.delete(usuario);
+
+		} catch (HibernateException e) {
+
+			throw new MyException("Ocurrio un error eliminando el usuario", e);
+		}
+		
+	}
+
+	@Override
+	public List<Usuario> obtenerUsuarios() throws MyException {
+		session = null;
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		Criteria criteria = null;
+
+		try {
+			session = sessionFactory.getCurrentSession();
+			criteria = session.createCriteria(Usuario.class);
+			criteria.addOrder(Order.asc("user"));
+
+			usuarios = criteria.list();
+		} catch (HibernateException e) {
+			throw new MyException("Ocurrio un error consultando los usuarios", e);
+		}
+
+		return usuarios;
 	}
 
 }
