@@ -61,9 +61,8 @@ public class UsuarioBL {
 	 *             Manejar las excepciones del DAO.
 	 * @throws IWServiceException
 	 *             Manejar las excepciones de la lógica del negocio.
-	
-	public String guardarEmpleado(String user, String pws)
-			throws MyException, IWServiceException {
+	 */
+	public String guardarUsuario(String user, String pws, String rolUser) throws MyException, IWServiceException {
 		Usuario usuario = null;
 		Rol rol = null;
 
@@ -75,25 +74,41 @@ public class UsuarioBL {
 			throw new IWServiceException("El campo password no puede ser nulo, ni una cadena de caracteres vacia");
 		}
 
+		if (Validaciones.isTextoVacio(rolUser)) {
+			throw new IWServiceException("El campo rol no puede ser nulo, ni una cadena de caracteres vacia");
+		}
+
 		// Validar que el usuario no exista
 		usuario = usuarioDAO.obtener(user);
 		if (usuario != null) {
 			throw new MyException("El usuario ya existe en el sistema, elija otro");
+		}		
+		
+		// Asignar rol
+		if (rolUser.equals("Cliente")) {
+			rol = rolDAO.obtenerRol(2);
+		}
+		else if (rolUser.equals("Empleado")) {
+			rol = rolDAO.obtenerRol(3);
+		}
+		else if (rolUser.equals("Gerente")) {
+			rol = rolDAO.obtenerRol(1);
+		}
+		else {
+			throw new MyException("EL rol no existe");
 		}
 
-		rol = rolDAO.obtenerRol(3); // Se obtiene el Rol con id=3 que identifica
+		usuario = new Usuario();
 
-		empleado.setCedula(cedula);
-		empleado.setNombre(nombres);
-		empleado.setApellido(apellidos);
-		empleado.setEmail(email);
-		empleado.setUsuario(user);
+		usuario.setUser(user);
+		usuario.setPassword(pws);
+		usuario.setRol(rol);
 
-		empleadoDAO.guardar(empleado);
-		return "Se ha creado el empleado exitosamente";
+		usuarioDAO.guardar(usuario);
+		return "Se ha creado el usuario exitosamente";
 
-	} */
-	
+	}
+
 	/**
 	 * Metodo para verificar el usuario y contrasenia con la base de datos
 	 * 

@@ -14,18 +14,19 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mappingResources">
 			<list>
-				<value>DTO/Cliente.hbm.xml</value>
-				<value>DTO/Empleado.hbm.xml</value>
-				<value>DTO/RespuestaEncuesta.hbm.xml</value>
-				<value>DTO/Rol.hbm.xml</value>
-				<value>DTO/Solicitud.hbm.xml</value>
-				<value>DTO/Sucursal.hbm.xml</value>
-				<value>DTO/TipoSolicitud.hbm.xml</value>
-				<value>DTO/Usuario.hbm.xml</value>
+				<value>dto/Cliente.hbm.xml</value>
+				<value>dto/Empleado.hbm.xml</value>
+				<value>dto/RespuestaEncuesta.hbm.xml</value>
+				<value>dto/Rol.hbm.xml</value>
+				<value>dto/Solicitud.hbm.xml</value>
+				<value>dto/Sucursal.hbm.xml</value>
+				<value>dto/TipoSolicitud.hbm.xml</value>
+				<value>dto/Usuario.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -80,16 +81,16 @@
 		<property name="rolDAO" ref="rolDAO"></property>
 	</bean>
 	<bean id="solicitudBL" class="bl.SolicitudBL">
-		<property name="usuarioDAO" ref="usuarioDAO"/>
-			<property name="clienteDAO" ref="clienteDAO"/>
-			<property name="empleadoDAO" ref="empleadoDAO"/>
-			<property name="sucursalDAO" ref="sucursalDAO"/>
-			<property name="tipoSolicitudDAO" ref="tipoSolicitudDAO"/>
-			<property name="solicitudDAO" ref="solicitudDAO"/>
+		<property name="usuarioDAO" ref="usuarioDAO" />
+		<property name="clienteDAO" ref="clienteDAO" />
+		<property name="empleadoDAO" ref="empleadoDAO" />
+		<property name="sucursalDAO" ref="sucursalDAO" />
+		<property name="tipoSolicitudDAO" ref="tipoSolicitudDAO" />
+		<property name="solicitudDAO" ref="solicitudDAO" />
 	</bean>
 
-	<!-- <context:component-scan base-package="co.edu.udea.iw.ws" /> -->
-
+	<!-- <context:component-scan base-package="ws" /> -->
+	<context:component-scan base-package="ws"></context:component-scan>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>

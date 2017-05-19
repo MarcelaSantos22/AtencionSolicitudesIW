@@ -97,21 +97,9 @@ public class ClienteBL {
 			throw new IWServiceException("El correo electronico debe ser valido");
 		}
 
-		if (Validaciones.isTextoVacio(telefono)) {
-			throw new IWServiceException("El campo telefono no puede ser nulo, ni una cadena de caracteres vacia");
-		}
-
-		if (Validaciones.isTextoVacio(direccion)) {
-			throw new IWServiceException("El campo direccion no puede ser nulo, ni una cadena de caracteres vacia");
-		}
-
-		if (Validaciones.isTextoVacio(usuario)) {
-			throw new IWServiceException("El campo usuario no puede ser nulo, ni una cadena de caracteres vacia");
-		}
-
 		// Validar que el usuario exista
 		Usuario user = usuarioDAO.obtener(usuario);
-		if (usuario == null) {
+		if (user == null) {
 			throw new MyException("El usuario no existe en el sistema");
 		}
 
@@ -196,7 +184,7 @@ public class ClienteBL {
 
 		// Validar que el usuario exista
 		Usuario user = usuarioDAO.obtener(usuario);
-		if (usuario == null) {
+		if (user == null) {
 			throw new MyException("El usuario no existe en el sistema");
 		}
 

@@ -51,8 +51,6 @@ public class EmpleadoDAOImplTest {
 
 			empleadoDAO.guardar(empleado);
 
-			
-
 		} catch (MyException e) {
 			e.printStackTrace();
 			fail(e.getMessage());
@@ -132,16 +130,16 @@ public class EmpleadoDAOImplTest {
 		Empleado empleado = new Empleado();
 		try {
 
-			empleado = empleadoDAO.obtener("1146436892");
+			empleado = empleadoDAO.obtener("398555602");
 
-			 System.out.println(empleado.getNombre() + " " + empleado.getApellido() + " " + empleado.getEmail());
+			System.out.println(empleado.getNombre() + " " + empleado.getApellido() + " " + empleado.getEmail());
 
 			assertTrue(empleado != null);
 
 		} catch (MyException e) {
 			fail(e.getMessage());
 		}
-
+		
 	}
 
 }
