@@ -6,12 +6,14 @@ import java.util.List;
 
 import dao.ClienteDAO;
 import dao.EmpleadoDAO;
+import dao.RespuestaEncuestaDAO;
 import dao.SolicitudDAO;
 import dao.SucursalDAO;
 import dao.TipoSolicitudDAO;
 import dao.UsuarioDAO;
 import dto.Cliente;
 import dto.Empleado;
+import dto.RespuestaEncuesta;
 import dto.Solicitud;
 import dto.Sucursal;
 import dto.TipoSolicitud;
@@ -39,6 +41,7 @@ public class SolicitudBL {
 	private ClienteDAO clienteDAO;
 	private EmpleadoDAO empleadoDAO;
 	private SucursalDAO sucursalDAO;
+	private RespuestaEncuestaDAO respuestaEncuestaDAO;
 
 	/**
 	 * Metodo para guardar la solicitud realizada por el Cliente. Los campos
@@ -271,7 +274,60 @@ public class SolicitudBL {
 		}
 		return solicitud;
 	}
+	
+	/**
+	 * Generar estadistica de satisfacción de la encuesta 
+	 * 
+	 * @return int resultado
+	 */
+	
+	public int nivelSatisfaccionClientes() throws MyException{
+		
+		int resultado=0;
+		int suma=0;
+		List<RespuestaEncuesta> respuestas;
+		
+		respuestas = respuestaEncuestaDAO.listarRespuestas();
+		
+		int numeroRespuestas = respuestas.size();
+		
+		for (RespuestaEncuesta respuesta : respuestas) {
+			suma = suma + respuesta.getSatisfaccion();
+		}
+		
+		resultado = (suma / numeroRespuestas) ;
+		
+		return resultado;
+		
+	}
+	
+	/**
+	 * Lista con los tiempos de respuestas de las solicitudes 
+	 * 
+	 * @return int resultado
+	 */
+	
+	public List<Integer> infoTiemposRespuestas() throws MyException{
+		
+		List<Integer> tiemposRespuestas = new ArrayList<Integer>();
+		List<Solicitud> solicitudes;
 
+		Date fechaSolicitud, fechaRespuesta;
+		int dias = 0;
+		
+		solicitudes = solicitudDAO.obtenerSolicitudes();
+		
+		for (Solicitud solicitud : solicitudes) {
+			fechaSolicitud = solicitud.getFechaSolicitud();
+			fechaRespuesta = solicitud.getFechaRespuesta();
+		
+			dias = diferenciaEnDias(fechaRespuesta, fechaSolicitud);
+			
+			tiemposRespuestas.add(dias);
+		}
+		
+		return tiemposRespuestas;
+	}
 	/**
 	 * Hacer seguimiento de fecha limite para responder una solicitud TERMINAR!!
 	 * 

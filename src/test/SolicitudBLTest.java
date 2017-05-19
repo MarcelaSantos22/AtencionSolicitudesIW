@@ -105,6 +105,27 @@ public class SolicitudBLTest {
 		} 
 	}
 	
+	@Test
+	public void nivelSatisfaccionCliente(){
+		try {
+			System.out.println();
+		}catch (MyException e){
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void infoTiemposRespuesta(){
+		
+		try{
+			for(Integer solicitud:solicitudBL.infoTiemposRespuestas()){
+				System.out.println("Tiempo respuesta: " );
+			}
+			
+		}catch (MyException e){
+			e.printStackTrace();
+		}
+	}
 	
 	@Test
 	public void filtrarPorTipo(){
