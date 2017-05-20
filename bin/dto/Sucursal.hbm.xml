@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/04/2017 09:01:16 PM by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 18/05/2017 09:43:40 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="dto.Sucursal" table="Sucursal">
         <id name="id" type="int">
@@ -9,13 +9,13 @@
             <generator class="assigned" />
         </id>
         <property name="nombre" type="java.lang.String">
-            <column name="NOMBRE" />
+            <column name="NOMBRE" length="50"/>
         </property>
         <property name="direccion" type="java.lang.String">
-            <column name="DIRECCION" />
+            <column name="DIRECCION" length="50"/>
         </property>
         <property name="telefono" type="java.lang.String">
-            <column name="TELEFONO" />
+            <column name="TELEFONO" length="15"/>
         </property>
     </class>
 </hibernate-mapping>

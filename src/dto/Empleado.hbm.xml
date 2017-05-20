@@ -1,24 +1,26 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/04/2017 09:01:16 PM by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 18/05/2017 09:43:40 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
+
     <class name="dto.Empleado" table="Empleado">
+
         <id name="cedula" type="java.lang.String">
-            <column name="CEDULA" />
+            <column name="CEDULA" length="30"/>
             <generator class="assigned" />
         </id>
         <property name="apellido" type="java.lang.String">
-            <column name="APELLIDO" />
+            <column name="APELLIDO" length="30"/>
         </property>
         <property name="nombre" type="java.lang.String">
-            <column name="NOMBRE" />
+            <column name="NOMBRE" length="30"/>
         </property>
         <property name="email" type="java.lang.String">
-            <column name="EMAIL" />
+            <column name="EMAIL" length="50"/>
         </property>
         <many-to-one name="usuario" class="dto.Usuario" fetch="join" lazy="false">
-            <column name="USUARIO" />
+            <column name="USUARIO" length="25"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

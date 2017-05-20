@@ -4,28 +4,28 @@
 <!-- Generated 26/04/2017 09:01:16 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="dto.Cliente" table="Cliente">
-    
+
         <id name="cedula" type="java.lang.String">
             <column name="CEDULA" />
             <generator class="assigned" />
         </id>
         <property name="apellido" type="java.lang.String">
-            <column name="APELLIDO" />
+            <column name="APELLIDO" length="30"/>
         </property>
         <property name="nombre" type="java.lang.String">
-            <column name="NOMBRE" />
+            <column name="NOMBRE" length="30"/>
         </property>
         <property name="email" type="java.lang.String">
-            <column name="EMAIL" />
+            <column name="EMAIL" length="50"/>
         </property>
         <property name="telefono" type="java.lang.String">
-            <column name="TELEFONO" />
+            <column name="TELEFONO" length="15"/>
         </property>
         <property name="direccion" type="java.lang.String">
-            <column name="DIRECCION" />
+            <column name="DIRECCION" length="30"/>
         </property>
         <many-to-one name="usuario" class="dto.Usuario" fetch="join" lazy="false">
-            <column name="USUARIO" />
+            <column name="USUARIO" length="25"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

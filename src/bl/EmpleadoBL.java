@@ -149,7 +149,7 @@ public class EmpleadoBL {
 	public String actualizarEmpleado(String cedula, String nombres, String apellidos, String email, String usuario) 
 			throws MyException, IWServiceException {
 
-		Empleado empleado = null;
+		Empleado empleado = new Empleado();
 
 		if (Validaciones.isTextoVacio(cedula)) {
 			throw new IWServiceException("El campo cédula no puede ser nulo, ni una cadena de caracteres vacia");
@@ -183,11 +183,14 @@ public class EmpleadoBL {
 		}
 
 		// Validar que el empleado exista
-		if (empleadoDAO.obtener(cedula) == null) {
+		System.out.println("cedula: " + cedula);
+
+		empleado = empleadoDAO.obtener(cedula);
+		if (empleado == null) {
 			throw new IWServiceException("No existe el empleado con cedula: " + cedula + " en el sistema");
 		}
 
-		empleado = new Empleado();
+		//empleado = new Empleado();
 
 		empleado.setCedula(cedula);
 		empleado.setNombre(nombres);
@@ -206,7 +209,7 @@ public class EmpleadoBL {
 	 * 
 	 * @throws MyException
 	 *             Manejar las excepciones del DAO.
-	 */
+	 
 	public String eliminarEmpleado(String cedula) throws MyException, IWServiceException {
 		Empleado empleado = null;
 
@@ -217,7 +220,7 @@ public class EmpleadoBL {
 
 		return null;
 
-	}
+	}*/
 
 	/**
 	 * Metodo para obtener el listado de empleados

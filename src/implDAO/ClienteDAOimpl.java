@@ -58,7 +58,7 @@ public class ClienteDAOimpl implements ClienteDAO {
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			session.update(cliente);
+			//session.update(cliente);
 
 		} catch (HibernateException e) {
 

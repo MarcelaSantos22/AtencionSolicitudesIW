@@ -44,8 +44,8 @@ public class ClienteBLTest {
 	@Rollback(false)
 	public void testGuardarCliente() {
 		try {
-			String mensaje = clienteBL.guardarCliente("12345", "Jorge Luis", "Bojaca", "jorge@gmail.com", "32422",
-					"CL 3 # 2-4","jogebojaca");
+			String mensaje = clienteBL.guardarCliente("123452", "Jorge Luis", "Bojaca", "jorge@gmail.com", "32422",
+					"CL 3 # 2-4","Marcela18");
 			System.out.println(mensaje);
 		} catch (MyException e) {
 			e.printStackTrace();
@@ -64,8 +64,8 @@ public class ClienteBLTest {
 	@Test
 	public void testModificarCliente() {
 		try {
-			String mensaje = clienteBL.actualizarCliente("12345", "Jorge Luis", "Bojaca", "jorge@hotmail.com", "32422",
-					"CL 3 # 2-4","jogebojaca");
+			String mensaje = clienteBL.actualizarCliente("12345", "Jorge Luis", "Bojaca Vallejo", "jorge@hotmail.com", "32422",
+					"CL 3 # 2-4","Marcela18");
 			System.out.println(mensaje);
 		} catch (MyException e) {
 			e.printStackTrace();

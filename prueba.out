@@ -1,7 +1,13 @@
 Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+<<<<<<< HEAD
 Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7ac7a4e4, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@6d78f375, org.springframework.test.context.support.DirtiesContextTestExecutionListener@50c87b21, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5f375618, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1810399e]
 Loading XML bean definitions from class path resource [configuracionSpring.xml]
 Refreshing org.springframework.context.support.GenericApplicationContext@57baeedf: startup date [Fri May 19 20:06:00 COT 2017]; root of context hierarchy
+=======
+Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5ae9a829, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@6d8a00e3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@548b7f67, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7ac7a4e4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6d78f375]
+Loading XML bean definitions from class path resource [configuracionSpring.xml]
+Refreshing org.springframework.context.support.GenericApplicationContext@39c0f4a: startup date [Fri May 19 14:21:39 COT 2017]; root of context hierarchy
+>>>>>>> df2773b5a0601cd2e8b5e32d53b99afe80b48cc1
 Loaded JDBC driver: com.mysql.jdbc.Driver
 Hibernate Commons Annotations 3.2.0.Final
 Hibernate 3.6.10.Final
@@ -16,6 +22,7 @@ recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use n
 recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
 recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
 recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+<<<<<<< HEAD
 Mapping class: dto.Cliente -> Cliente
 Mapping class: dto.Empleado -> Empleado
 Mapping class: dto.RespuestaEncuesta -> RespuestaEncuesta
@@ -24,6 +31,16 @@ Mapping class: dto.Solicitud -> Solicitud
 Mapping class: dto.Sucursal -> Sucursal
 Mapping class: dto.TipoSolicitud -> TipoSolicitud
 Mapping class: dto.Usuario -> Usuario
+=======
+Mapping class: dto.Cliente -> CLIENTE
+Mapping class: dto.Empleado -> EMPLEADO
+Mapping class: dto.RespuestaEncuesta -> RESPUESTAENCUESTA
+Mapping class: dto.Rol -> ROL
+Mapping class: dto.Solicitud -> SOLICITUD
+Mapping class: dto.Sucursal -> SUCURSAL
+Mapping class: dto.TipoSolicitud -> TIPOSOLICITUD
+Mapping class: dto.Usuario -> USUARIO
+>>>>>>> df2773b5a0601cd2e8b5e32d53b99afe80b48cc1
 Hibernate Validator not found: ignoring
 Building new Hibernate SessionFactory
 Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
@@ -31,9 +48,15 @@ Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSo
 Using dialect: org.hibernate.dialect.MySQLDialect
 Database ->
        name : MySQL
+<<<<<<< HEAD
     version : 5.5.52-0ubuntu0.14.04.1
       major : 5
       minor : 5
+=======
+    version : 5.6.26-log
+      major : 5
+      minor : 6
+>>>>>>> df2773b5a0601cd2e8b5e32d53b99afe80b48cc1
 Driver ->
        name : MySQL-AB JDBC Driver
     version : mysql-connector-java-5.1.22 ( Revision: ${bzr.revision-id} )
@@ -69,6 +92,7 @@ Default entity-mode: pojo
 Named query checking : enabled
 Check Nullability in Core (should be disabled when Bean Validation is on): disabled
 building session factory
+<<<<<<< HEAD
 Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@7b7fdc8
 Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@51c693d
 Type registration [blob] overrides previous : org.hibernate.type.BlobType@6a57ae10
@@ -82,5 +106,28 @@ Not binding factory to JNDI, no JNDI name configured
 Began transaction (1) for test context [DefaultTestContext@20b12f8a testClass = SolicitudBLTest, testInstance = test.SolicitudBLTest@e84a8e1, testMethod = mostrarSolicitudes@SolicitudBLTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@2e554a3b testClass = SolicitudBLTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@54a67a45]; rollback [true]
 Rolled back transaction for test context [DefaultTestContext@20b12f8a testClass = SolicitudBLTest, testInstance = test.SolicitudBLTest@e84a8e1, testMethod = mostrarSolicitudes@SolicitudBLTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@2e554a3b testClass = SolicitudBLTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
 Closing org.springframework.context.support.GenericApplicationContext@57baeedf: startup date [Fri May 19 20:06:00 COT 2017]; root of context hierarchy
+=======
+Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@a82c5f1
+Type registration [clob] overrides previous : org.hibernate.type.ClobType@7b7fdc8
+Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@7b7fdc8
+Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@51c693d
+Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@6a57ae10
+Type registration [blob] overrides previous : org.hibernate.type.BlobType@766653e6
+Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@766653e6
+Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@4e07b95f
+Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@28b46423
+Not binding factory to JNDI, no JNDI name configured
+Began transaction (1) for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@56aaaecd, testMethod = testObtenerList@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@35390ee3]; rollback [true]
+Rolled back transaction for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@56aaaecd, testMethod = testObtenerList@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+Began transaction (1) for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@20f12539, testMethod = testEliminarEmpleado@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@35390ee3]; rollback [true]
+Rolled back transaction for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@20f12539, testMethod = testEliminarEmpleado@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+Began transaction (1) for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@7b8233cd, testMethod = testModificarEmpleado@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@35390ee3]; rollback [true]
+Rolled back transaction for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@7b8233cd, testMethod = testModificarEmpleado@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+Began transaction (1) for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@29df4d43, testMethod = testObtenerEmpleado@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@35390ee3]; rollback [true]
+Rolled back transaction for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@29df4d43, testMethod = testObtenerEmpleado@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+Began transaction (1) for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@6cfcd46d, testMethod = testGuardarEmpleado@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@35390ee3]; rollback [true]
+Rolled back transaction for test context [DefaultTestContext@7d42c224 testClass = EmpleadoDAOImplTest, testInstance = test.EmpleadoDAOImplTest@6cfcd46d, testMethod = testGuardarEmpleado@EmpleadoDAOImplTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@522a32b1 testClass = EmpleadoDAOImplTest, locations = '{classpath:configuracionSpring.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+Closing org.springframework.context.support.GenericApplicationContext@39c0f4a: startup date [Fri May 19 14:21:39 COT 2017]; root of context hierarchy
+>>>>>>> df2773b5a0601cd2e8b5e32d53b99afe80b48cc1
 Closing Hibernate SessionFactory
 closing
