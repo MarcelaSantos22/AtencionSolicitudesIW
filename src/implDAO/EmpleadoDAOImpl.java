@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.EmpleadoDAO;
 import dto.Cliente;
@@ -16,7 +17,7 @@ import dto.Empleado;
 import exception.MyException;
 
 /**
- * Implementación de los metodos
+ * Implementaciï¿½n de los metodos
  *  de la interfaz EmpleadoDAO.
  * 
  * @author Yuri Quejada
@@ -24,12 +25,10 @@ import exception.MyException;
  * @author Jean Herrera
  * @version 1.0
  */
-
+@Transactional
 public class EmpleadoDAOImpl implements EmpleadoDAO{
 	
 	private SessionFactory sessionFactory;
-	private Session session;
-	private Transaction transaction;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -41,7 +40,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO{
 	
 	@Override
 	public void guardar(Empleado empleado) throws MyException {
-		session = null;
+		Session session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -55,7 +54,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO{
 
 	@Override
 	public void modificar(Empleado empleado) throws MyException {
-		session = null;
+		Session session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -69,7 +68,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO{
 
 	@Override
 	public void eliminar(Empleado empleado) throws MyException {
-		session = null;
+		Session session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -83,7 +82,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO{
 
 	@Override
 	public List<Empleado> obtener() throws MyException {
-		session = null;
+		Session session = null;
 		List<Empleado> empleados = new ArrayList<Empleado>();
 		Criteria criteria = null;
 
@@ -103,7 +102,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO{
 	@Override
 	public Empleado obtener(String cedula) throws MyException {
 		Empleado empleado = new Empleado();
-		session = null;
+		Session session = null;
 		try {
 			session = sessionFactory.getCurrentSession();
 			empleado = (Empleado) session.get(Empleado.class, cedula);

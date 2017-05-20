@@ -18,19 +18,18 @@ import dto.TipoSolicitud;
 import exception.MyException;
 
 /**
- * Implementación de la interfaz SolicitudDAO. 
+ * Implementaciï¿½n de la interfaz SolicitudDAO. 
  * 
  * @author Yuri Quejada
  * @author Daniel Pelaez
  * @author Jean Herrera
  * @version 1.0
  */
-
+@Transactional
 public class SolicitudDAOImpl implements SolicitudDAO
 {
 	private SessionFactory sessionFactory;
-	private Session session;
-	private Transaction transaction;
+
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -43,10 +42,10 @@ public class SolicitudDAOImpl implements SolicitudDAO
 	@Override
 	public List<Solicitud> obtenerSolicitudes() throws MyException {
 	List<Solicitud> solicitudes = new ArrayList<Solicitud>();
-	session = null;
+	Session session = null;
 		
 		try{
-			Session session = sessionFactory.getCurrentSession();
+			 session = sessionFactory.getCurrentSession();
 			
 			Criteria criteria = session.createCriteria(Solicitud.class);
 			
@@ -61,7 +60,7 @@ public class SolicitudDAOImpl implements SolicitudDAO
 	@Override
 	public Solicitud obtenerSolicitud(int id) throws MyException{
 		Solicitud solicitud = null;
-		session = null;
+		Session session = null;
 		try{
 			session = sessionFactory.getCurrentSession();
 			
@@ -79,7 +78,7 @@ public class SolicitudDAOImpl implements SolicitudDAO
 
 	@Override
 	public void guardar(Solicitud solicitud) throws MyException {
-		session = null;
+		Session session = null;
 		try{
 			session = sessionFactory.getCurrentSession();
 			session.save(solicitud);
@@ -91,7 +90,7 @@ public class SolicitudDAOImpl implements SolicitudDAO
 
 	@Override
 	public void eliminarSolicitud(Solicitud solicitud) throws MyException {
-		session = null;
+		Session session = null;
 		try{
 			session = sessionFactory.getCurrentSession();
 			
@@ -105,7 +104,7 @@ public class SolicitudDAOImpl implements SolicitudDAO
 
 	@Override
 	public void actualizar(Solicitud solicitud) throws MyException {
-		session = null;
+		Session session = null;
 		try{
 			session = sessionFactory.getCurrentSession();
 			
@@ -119,7 +118,7 @@ public class SolicitudDAOImpl implements SolicitudDAO
 	
 	@Override
 	public List<Solicitud> filtrarSolicitudes(TipoSolicitud tipoSolicitud) throws MyException {
-		session = null;
+		Session session = null;
 		List<Solicitud> solicitudes;
 		try {
 			session = sessionFactory.getCurrentSession();

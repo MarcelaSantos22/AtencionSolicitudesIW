@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.SucursalDAO;
 import dto.Sucursal;
@@ -17,7 +18,7 @@ import dto.TipoSolicitud;
 import exception.MyException;
 
 /**
- * Implementación de la interfaz SucursalDAO, 
+ * Implementaciï¿½n de la interfaz SucursalDAO, 
  * en esta clase se hereda HibernateDaoSupport 
  * para adquirir la funcionalidad de Hibernate.
  * 
@@ -26,11 +27,10 @@ import exception.MyException;
  * @author Jean Herrera
  * @version 1.0
  */
+@Transactional
 public class SucursalDAOImpl implements SucursalDAO {
 	
 	private SessionFactory sessionFactory;
-	private Session session;
-	private Transaction transaction;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -43,7 +43,7 @@ public class SucursalDAOImpl implements SucursalDAO {
 	@Override
 	public List<Sucursal> obtenerSucursales() throws MyException {
 		List<Sucursal> sucursales = new ArrayList<Sucursal>();
-		session = null;
+		Session session = null;
 		
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -58,7 +58,7 @@ public class SucursalDAOImpl implements SucursalDAO {
 	@Override
 	public Sucursal obtenerSucursal(Integer id) throws MyException {
 		Sucursal sucursal;
-		session = null;
+		Session session = null;
 		try {
 			session = sessionFactory.getCurrentSession();
 			sucursal = (Sucursal)session.get(Sucursal.class, id);

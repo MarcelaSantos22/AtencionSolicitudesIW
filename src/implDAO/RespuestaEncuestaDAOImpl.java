@@ -8,13 +8,14 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.RespuestaEncuestaDAO;
 import dto.RespuestaEncuesta;
 import exception.MyException;
 
 /**
- * Implementación de la interfaz RespuestaEncuestaDAO, 
+ * Implementaciï¿½n de la interfaz RespuestaEncuestaDAO, 
  * en esta clase se hereda de HibernateDaoSupport 
  * para adquirir la funcionalidad de Hibernate.
  * 
@@ -23,13 +24,12 @@ import exception.MyException;
  * @author Jean Herrera
  * @version 1.0
  */
-
+@Transactional
 public class RespuestaEncuestaDAOImpl implements RespuestaEncuestaDAO {
 
 	
 	private SessionFactory sessionFactory;
-	private Session session;
-	private Transaction transaction;
+
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -43,7 +43,7 @@ public class RespuestaEncuestaDAOImpl implements RespuestaEncuestaDAO {
 	public List<RespuestaEncuesta> listarRespuestas() throws MyException {
 	List<RespuestaEncuesta> respuestas = new ArrayList<RespuestaEncuesta>();
 		
-	session = null;
+	Session session = null;
 
 	
 		try{
@@ -61,7 +61,7 @@ public class RespuestaEncuestaDAOImpl implements RespuestaEncuestaDAO {
 	@Override
 	public RespuestaEncuesta obtenerRespuesta(int id) throws MyException{
 		RespuestaEncuesta respuesta = null;
-		session = null;
+		Session session = null;
 		try{
 			session = sessionFactory.getCurrentSession();
 			
@@ -77,7 +77,7 @@ public class RespuestaEncuestaDAOImpl implements RespuestaEncuestaDAO {
 
 	@Override
 	public void crearRespuesta(RespuestaEncuesta respuesta) throws MyException {
-		session = null;
+		Session session = null;
 		try{
 			session = sessionFactory.getCurrentSession();
 			session.save(respuesta);
@@ -89,7 +89,7 @@ public class RespuestaEncuestaDAOImpl implements RespuestaEncuestaDAO {
 
 	@Override
 	public void eliminarRespuesta(RespuestaEncuesta respuesta) throws MyException {
-		session = null;
+		Session session = null;
 		try{
 			session = sessionFactory.getCurrentSession();
 			
@@ -103,7 +103,7 @@ public class RespuestaEncuestaDAOImpl implements RespuestaEncuestaDAO {
 
 	@Override
 	public void modificarRespuesta(RespuestaEncuesta respuesta) throws MyException {
-		session = null;
+		Session session = null;
 		try{
 			session = sessionFactory.getCurrentSession();
 			

@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 26/04/2017 09:01:16 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="dto.RespuestaEncuesta" table="RESPUESTAENCUESTA">
+    <class name="dto.RespuestaEncuesta" table="RespuestaEncuesta">
         <id name="id" type="int">
             <column name="ID" />
             <generator class="assigned" />
@@ -11,8 +11,8 @@
         <property name="satisfaccion" type="int">
             <column name="SATISFACCION" />
         </property>
-        <many-to-one name="cliente" class="dto.Cliente" fetch="join">
-            <column name="CLIENTE" />
+        <many-to-one name="cliente" class="dto.Cliente" fetch="join" lazy="false">
+            <column name="CLIENTE"  not-null="true"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

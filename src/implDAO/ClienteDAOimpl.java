@@ -9,13 +9,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.ClienteDAO;
 import dto.Cliente;
 import exception.MyException;
 
 /**
- * Implementación de los metodos
+ * Implementaciï¿½n de los metodos
  *  de la interfaz ClienteDao.
  * 
  * @author Yuri Quejada
@@ -23,12 +24,10 @@ import exception.MyException;
  * @author Jean Herrera
  * @version 1.0
  */
-
+@Transactional
 public class ClienteDAOimpl implements ClienteDAO {
 	
 	private SessionFactory sessionFactory;
-	private Session session;
-	private Transaction transaction;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -40,7 +39,7 @@ public class ClienteDAOimpl implements ClienteDAO {
 
 	@Override
 	public void guardar(Cliente cliente) throws MyException {
-		session = null;
+		Session session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -55,7 +54,7 @@ public class ClienteDAOimpl implements ClienteDAO {
 
 	@Override
 	public void modificar(Cliente cliente) throws MyException {
-		session = null;
+		Session session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -70,7 +69,7 @@ public class ClienteDAOimpl implements ClienteDAO {
 
 	@Override
 	public void eliminar(Cliente cliente) throws MyException {
-		session = null;
+		Session session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -84,7 +83,7 @@ public class ClienteDAOimpl implements ClienteDAO {
 
 	@Override
 	public List<Cliente> obtener() throws MyException {
-		session = null;
+		Session session = null;
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		Criteria criteria = null;
 
@@ -104,7 +103,7 @@ public class ClienteDAOimpl implements ClienteDAO {
 	@Override
 	public Cliente obtener(String cedula) throws MyException {
 		Cliente cliente = new Cliente();
-		session = null;
+		Session session = null;
 		try {
 			session = sessionFactory.getCurrentSession();
 			cliente = (Cliente) session.get(Cliente.class, cedula);

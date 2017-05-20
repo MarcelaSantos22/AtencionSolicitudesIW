@@ -43,6 +43,14 @@ public class SolicitudBL {
 	private SucursalDAO sucursalDAO;
 	private RespuestaEncuestaDAO respuestaEncuestaDAO;
 
+	public RespuestaEncuestaDAO getRespuestaEncuestaDAO() {
+		return respuestaEncuestaDAO;
+	}
+
+	public void setRespuestaEncuestaDAO(RespuestaEncuestaDAO respuestaEncuestaDAO) {
+		this.respuestaEncuestaDAO = respuestaEncuestaDAO;
+	}
+
 	/**
 	 * Metodo para guardar la solicitud realizada por el Cliente. Los campos
 	 * necesarios para realizar la solicitud son los ingresados como parametros.
@@ -148,7 +156,7 @@ public class SolicitudBL {
 			throw new MyException(
 					"No tiene permisos para realizar esta accion");
 		}
-		if (!usrGerente.getUsuario().getRol().getDescripcion().equals("gerente")) {
+		if (!usrGerente.getUsuario().getRol().getDescripcion().equals("Gerente")) {
 			throw new MyException(
 					"No tiene permisos para realizar esta accion");
 		}
@@ -240,17 +248,9 @@ public class SolicitudBL {
 	 * @throws MyException
 	 *             Manejar las excepciones de la lï¿½gica del negocio.
 	 */
-	public List<Solicitud> obtenerSolicitudes(String cedula) throws MyException,
-		 MyException {
-		Empleado empleado = empleadoDAO.obtener(cedula);
-		if (empleado == null) {
-			throw new MyException(
-					"No existe usuario");
-		}
-		if (!empleado.getUsuario().getRol().getDescripcion().equals("gerente")) {
-			throw new MyException(
-					"No tiene permisos para realizar esta acciï¿½n");
-		}
+	public List<Solicitud> obtenerSolicitudes() throws MyException
+	{
+		//FALTAN VALIDACIONES
 		return solicitudDAO.obtenerSolicitudes();
 	}
 
@@ -276,7 +276,7 @@ public class SolicitudBL {
 	}
 	
 	/**
-	 * Generar estadistica de satisfacción de la encuesta 
+	 * Generar estadistica de satisfacciï¿½n de la encuesta 
 	 * 
 	 * @return int resultado
 	 */
@@ -307,20 +307,22 @@ public class SolicitudBL {
 	 * @return int resultado
 	 */
 	
-	public List<Integer> infoTiemposRespuestas() throws MyException{
+	public List<Integer> infoTiemposRespuestas() throws MyException{ //Tipo Solicitud (?)
 		
 		List<Integer> tiemposRespuestas = new ArrayList<Integer>();
 		List<Solicitud> solicitudes;
 
 		Date fechaSolicitud, fechaRespuesta;
 		int dias = 0;
+		int id;
 		
 		solicitudes = solicitudDAO.obtenerSolicitudes();
 		
 		for (Solicitud solicitud : solicitudes) {
 			fechaSolicitud = solicitud.getFechaSolicitud();
 			fechaRespuesta = solicitud.getFechaRespuesta();
-		
+			id = solicitud.getId();
+			
 			dias = diferenciaEnDias(fechaRespuesta, fechaSolicitud);
 			
 			tiemposRespuestas.add(dias);

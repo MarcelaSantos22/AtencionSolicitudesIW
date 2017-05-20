@@ -28,7 +28,7 @@ CREATE TABLE Empleado (
 CREATE TABLE RespuestaEncuesta (
     id int NOT NULL AUTO_INCREMENT,
     satisfaccion int NOT NULL,
-    cliente varchar(30) NULL,
+    cliente varchar(30) NOT NULL,
     CONSTRAINT RespuestaEncuesta_pk PRIMARY KEY (id)
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE Solicitud (
     fechaSolicitud date NOT NULL,
     fechaRespuesta date NULL,
     respuestaSolicitud varchar(500) NULL,
-    cliente varchar(30) NULL,
+    cliente varchar(30) NOT NULL,
     sucursal int NULL,
     tipoSolicitud int NOT NULL,
     responsable varchar(30) NULL,
@@ -110,6 +110,18 @@ ALTER TABLE Solicitud ADD CONSTRAINT Solicitud_TipoSolicitud FOREIGN KEY Solicit
 -- Reference: Usuario_Rol (table: Usuario)
 ALTER TABLE Usuario ADD CONSTRAINT Usuario_Rol FOREIGN KEY Usuario_Rol (rol)
     REFERENCES Rol (id);
+
+-- Datos 
+INSERT INTO Rol (id, descripcion) VALUES ('1', 'Gerente'); 
+
+INSERT INTO Usuario (user, password, rol) VALUES ('Sergio', 'lindo', 1);
+
+INSERT INTO Cliente (cedula, nombre, apellido, email, telefono, direccion, usuario) VALUES ('1484635', 'Jean', 'Herrera', 'Jea@gmail.com', '34545', 'Sevilla', 'Sergio');
+
+INSERT INTO Sucursal (nombre, direccion, telefono) VALUES ('Barbosa', 'Lasdaud', '542154');
+
+INSERT INTO Empleado (cedula, nombre, apellido, email, usuario) VALUES ('45466', 'Sergio', 'busquet', 'email@sf', 'Sergio');
+
 
 -- End of file.
 

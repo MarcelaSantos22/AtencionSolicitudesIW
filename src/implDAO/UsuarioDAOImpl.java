@@ -9,6 +9,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.UsuarioDAO;
 import dto.Empleado;
@@ -16,7 +17,7 @@ import dto.Usuario;
 import exception.MyException;
 
 /**
- * Implementación de los metodos
+ * Implementaciï¿½n de los metodos
  *  de la interfaz UsuarioDAO.
  * 
  * @author Yuri Quejada
@@ -24,11 +25,10 @@ import exception.MyException;
  * @author Jean Herrera
  * @version 1.0
  */
-
+@Transactional
 public class UsuarioDAOImpl implements UsuarioDAO{
 	
 	private SessionFactory sessionFactory;
-	private Session session;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -40,7 +40,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	
 	@Override
 	public Usuario obtener(String user) throws MyException {
-		session = null;
+		Session session = null;
 		Usuario usuario = new Usuario();
 
 		try {
@@ -56,7 +56,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 	@Override
 	public void guardar(Usuario usuario) throws MyException {
-		session = null;
+		Session session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -70,7 +70,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 	@Override
 	public void eliminar(Usuario usuario) throws MyException {
-		session = null;
+		Session session = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -85,7 +85,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 	@Override
 	public List<Usuario> obtenerUsuarios() throws MyException {
-		session = null;
+		Session session = null;
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		Criteria criteria = null;
 

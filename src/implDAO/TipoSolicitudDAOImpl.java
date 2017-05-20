@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.TipoSolicitudDAO;
 import dto.TipoSolicitud;
@@ -17,7 +18,7 @@ import dto.Usuario;
 import exception.MyException;
 
 /**
- * Implementación de la interfaz TipoSolicitudDao, 
+ * Implementaciï¿½n de la interfaz TipoSolicitudDao, 
  * esta se basara en Hibernate,
  * en esta clase se hereda de HibernateDaoSupport 
  * para adquirir la funcionalidad de Hibernate.
@@ -27,11 +28,10 @@ import exception.MyException;
  * @author Daniel Pelaez
  * @version 1.0
  */
+@Transactional
 public class TipoSolicitudDAOImpl implements TipoSolicitudDAO{
 	
 	private SessionFactory sessionFactory;
-	private Session session;
-	private Transaction transaction;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -44,7 +44,7 @@ public class TipoSolicitudDAOImpl implements TipoSolicitudDAO{
 	@Override
 	public List<TipoSolicitud> obtenerTipoSolicitudes() throws MyException {
 		List<TipoSolicitud> tiposolicitudes = new ArrayList<TipoSolicitud>();
-		session = null;
+		Session session = null;
 		
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -59,7 +59,7 @@ public class TipoSolicitudDAOImpl implements TipoSolicitudDAO{
 	@Override
 	public TipoSolicitud obtenerTipoSolicitud(Integer id) throws MyException {
 		TipoSolicitud tiposolicitud;
-		session = null;
+		Session session = null;
 		try {
 			session = sessionFactory.getCurrentSession();
 			tiposolicitud = (TipoSolicitud)session.get(TipoSolicitud.class, id);
